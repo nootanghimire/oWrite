@@ -17,9 +17,13 @@ It has got a plenty of issues, and some codes may need refactoring. Please go th
 Or, post an issue on issue tracker and we'll try to correct it!
 
 
+Creators (You can also be one)
+===========
+
  - Concept and Initial Programming : [Nootan Ghimire](https://www.github.com/nootanghimire) 
  - Interface Design (CSS Coder) : [Nishan](https://github.com/Nishan13)
  
+**If you want to try the basic version:** [Click here](http://www.owrite.co.nf) (has limited bandwidth, please don't flood the site) :)
 
 External Libraries, Codes, or Framework used
 =============================
