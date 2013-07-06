@@ -30,7 +30,7 @@ External Libraries, Codes, or Framework used
 
  - [CodeIgniter by Ellislab](https://github.com/EllisLab/CodeIgniter)
  - [PHPFineDiff](https://github.com/gorhill/PHP-FineDiff)
- - wmd parser and editor (I forgot the link. It's in SO though)
+ - wmd parser and editor (I forgot the link. It's in gh though)
 
 
 License
