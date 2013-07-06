@@ -17,7 +17,7 @@ It has got a plenty of issues, and some codes may need refactoring. Please go th
 Or, post an issue on issue tracker and we'll try to correct it!
 
 
- - Concept and Initial Programming : [Nootan Ghimire](https//www.github.com/nootanghimire) 
+ - Concept and Initial Programming : [Nootan Ghimire](https://www.github.com/nootanghimire) 
  - Interface Design (CSS Coder) : [Nishan](https://github.com/Nishan13)
  
 
