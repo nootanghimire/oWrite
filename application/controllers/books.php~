@@ -1,0 +1,38 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Books extends CI_Controller {
+
+
+	public function see($id=null, $name=null){
+		$this->load->view('header');
+		if($id==null || $name==null){
+		
+			$this->load->view('content/specificError', array('ErrorMessage'=>'Id Cannot Be Null.');
+			$this->load->view('footer');
+			return false;
+		}
+		$this->load->model('books_model');
+		if(!( $book = $this->books_model->getBookById($id))){
+			$this->load->view('content/specificError', array('ErrorMessage'=>'Databse Error.');
+			$this->load->view('footer');
+		}
+		$this->load->view('books/see', array('Book'=>$book); //use $Book->BookTitle, etc... in view
+		$this->load->view('footer');	
+	}
+
+	public function edit($id=null, $name=null){
+		
+	}
+
+	public function approve($editId_array){
+		//use fine diff. check security
+	}	
+
+	public functino edit($bookId){
+		
+	}
+	
+}
+
+/* End of file welcome.php */
+/* Location: ./application/controllers/welcome.php */

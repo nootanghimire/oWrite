@@ -1,0 +1,48 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+	
+class Books_model extends CI_Model{
+
+	public function __construct(){
+		parent::__construct();
+		$this->load->database();
+
+	}
+
+
+	public function getFromCat($category){
+		$this->db->from('books')->where('BookCategory', $category);
+		$q = $this->db->get();
+		return $q->result(); //results array of objects
+	}
+
+	public function getBookById($id){
+		$this->db->from('books')->where('BookId', $id);
+		$q = $this->db->get();
+		return $q->row(); //single row for results
+	}
+
+	public function getBooksLikeName($name){
+		$this->db->from('books')->like('BookName', $name);
+		$q = $this->db->get();
+		return $q->result(); //results array of objects
+	}
+
+	public function getBooksByUser($userid){
+		$this->db->from('books')->where('UserId',$userid);
+		$q = $this->db->get();
+		return $q->result(); //resutls array of objects	
+	}
+	
+
+	public function saveToBook($content){
+		//$content must have all the contents. It will replace all the contents
+		$insertData = array(
+					array(
+					'contents' => $content
+					)
+				);
+		return $this->db->insert_batch('books', $insertData);
+	}
+	
+
+?>

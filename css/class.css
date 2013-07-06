@@ -1,0 +1,19 @@
+.error{
+	font-size: 30px;
+	margin:30px;
+	padding: 5px;
+	text-align: center;
+	color:#6f66f6;
+	background: #ff9960;
+	
+}
+
+.info{
+	font-size: 30px;
+	margin:30px;
+	padding: 5px;
+	text-align: center;
+	color:#6f3fd6;
+	background: #6fff66;
+	
+}

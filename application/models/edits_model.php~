@@ -1,0 +1,47 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+	
+class Edits_model extends CI_Model{
+
+	public function __construct(){
+		parent::__construct();
+		$this->load->database();
+
+	}
+
+	public function getEditsForBook($bookId){
+		//use security. return edits (Array of objects) for book
+		$this->db->from('edits')->where('BookId', $bookId);
+		$q = $this->db->get();
+		return $q->result(); //array of objects
+	}
+
+	public function insertNewEdit($user_id, $book_id, $content){
+		//make and insert Things
+		$insertData = array(
+					array(
+					'UserId'=>$user_id,
+					'BookId'=>$book_id,
+					'editContent'=>$content,
+					'ApproveStatus'=>0
+					)
+				);
+		return $this->db->insert_batch('edits', $insertData);
+		
+	}
+
+	public function set_ApproveYes($editId){
+		$updateData = array(
+				'ApproveStatus'=>1
+				);
+
+		$this->db->where('EditId',$editId);
+		$this->db->update_batch('edits', $updateData);
+	}
+
+	public function getApproveStatus($editId){
+		$this->db->from('edits')->where('EditId',$editId);
+		$q = $this->db->get();
+		$row = $q->row();
+		return $row->ApproveStatus;
+	}
+?>

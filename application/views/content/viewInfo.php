@@ -1,0 +1,1 @@
+<div class="info" style="display:block; opacity:1;" ><?php echo $Message; ?></div>

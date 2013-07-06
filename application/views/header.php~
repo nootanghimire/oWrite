@@ -1,0 +1,43 @@
+<html>
+<head>
+	<title>oWrite - Contribute</title>
+	<link rel="stylesheet" type="text/css" href="/owrite_new/css/main.css" />
+	<script type="text/javascript"  src="/owrite_new/js/script.js"></script>
+</head>
+<body>
+	<div id="wrapper">
+		<div id="temp" style="display:none;opacity:0;">
+			<div id="tempinfo">oWrite - Distraction Free Writing Mode</div>
+			<div id="exitdonotdisturb" onmousedown="exitdonotdisturb('temp')">Exit Do Not Disturb</div>
+			<br>
+			<form name="tempform">
+				<textarea name="temp_txt"></textarea>
+			</form>
+		</div>
+		<div id="header"  >		
+			<div id="header_login" onclick="toggle('loginbox');">
+				<h3 style="margin:10px;">Login/Sign Up</h3>
+			</div>
+			<div id="loginbox" style="display:none;">
+				<h3>Login:</h3>
+				<hr>
+				<form name="login" action="/oWrite_new/user/login" method="post" id="login_form">
+
+					<label for="username">Username:</label> <input type="text" name="user" class="input_box"  placeholder="Username" /><br>
+					<label for="password">Password:</label> <input type="password" name="pass" class="input_box"  placeholder="Password" /><br>
+
+					<div id="sub_btn" onclick="document.getElementById('login_form').submit();">Log In</div>
+				</form>
+				<div id="newuser">
+					<a href="signup.php">New User? Sign Up!</a>
+				</div>
+			</div>
+			<div id="header_info" style="display:none; margin-top:-10px;">Collaborate to elaborate!&nbsp; &nbsp;</div>
+			<div id="header_logo" onmouseover="toggle('header_info');" onmouseout="toggle('header_info');" onclick="window.location = 'index.php';">
+				<h1 style="margin:10px;">oWrite</h1>
+			</div>
+			<div id="menu">
+				<h3>Categories</h3>
+			</div>
+		</div>
+		<div id="contents"> <!-- content start- -->

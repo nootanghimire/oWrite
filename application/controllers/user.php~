@@ -1,0 +1,150 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class User extends CI_Controller {
+
+	private $e; 
+	private function login_core($username, $user_pass){
+		//Get value from database
+		$this->load->model('user_model');
+		if($this->user_model->init($username) == 1){
+			$pass = $this->user_model->getPassword();
+			$this->e['db_pass'] = $pass; 
+			//Now encrypt th real password 
+			//Make thisL
+			 $e_p = $username. $user_pass . $this->user_model->getEmail();
+			 $e_p = sha1($e_p);
+			 $this->e['act_pass'] = $e_p;
+			 //Whenever the email is changed, update the password. (Require password to change the email)
+			$this->load->library('encrypt');
+			$this->load->library('security');
+
+			//$e_p = $this->encrypt->encode($user_pass, $this->user_model->getKey());
+			//$this->e = $e_p;
+			//$this->e = $this->user_model->getNumRows();
+			if($pass == $e_p){
+				setcookie('y',$this->encrypt->encode($usrename, $_SERVER['HTTP_USER_AGENT']), '/', 60*60*24*3);
+				$this->security->SetInfoLocal($e_p);
+				return true;
+			} else {
+				return false; //false'
+			}
+
+		} else {
+			return false;
+		}
+	}
+
+
+	public function login(){
+		if(!isset($_POST['user'], $_POST['pass'])){ 
+			$this->load->view('header');
+			$this->load->view('content/errorError');
+			$this->load->view('footer');
+			return false;
+		}
+
+		$user = $_POST['user'];
+		$pass = $_POST['pass'];
+		
+		
+		if(self::login_core($user, $pass)){
+			$d['a'] = $this->e;
+			$this->load->view('header', $d);
+			if(isset($_GET['redirect_to'])) { 
+				ob_start();
+				header('location:'. $_GET['redirect_to']);
+				return true;
+			}
+			$data['userloggedOn'] = true;
+			$this->load->view('main', $data);
+		}
+		else
+		{
+			$data['userloggedOn'] = false;
+			$this->load->view('main', $this->e);
+		}
+
+		$this->load->view('footer');
+	}
+
+
+	public function profile($username){
+		$this->load->model('user_model');
+		$this->load->view('header');
+		if($this->user_model->init($username) == 1){
+
+			$data['UserObject'] = $this->user_model->getEntireObject();
+			$this->load->view('user/profile', $data); //use UserObject Object to print out what is required. 
+		} else {
+
+		}
+	}
+
+	public function signup(){
+		
+		if(!isset($_POST['user'], $_POST['pass'], $_POST['email'])){	
+			$this->load->view('header');
+			$this->load->view('content/errorError');
+			$this->load->view('footer');
+			return 0;
+		} else {
+
+			$username = $_POST['user'];
+			$password = $_POST['pass'];
+			$email = $_POST['email'];
+			if(self::UserExists($username)){
+				$this->load->view('header');
+				$this->load->view('content/specificError',array('ErrorNumber'=>'1', 'ErrorMessage'=>'User Already Exists'));
+			} else {
+				//The whole logic here
+				$pass = $username . $password . $email ;
+				$pass = sha1($pass);
+				$this->load->model('newuser_model');
+				if($this->newuser_model->setUserDetailsBasic($username, $pass, $email)){
+					//do other things here.
+					if(self::login_core($username, $pass)){
+						ob_start();
+						header('location:/oWrite_new/users/profile');
+					} else{
+						$this->load->view('header');
+						$this->load->view('content/specificError', array('ErrorMessage'=>'Oops! We Cannot Log you in! That must be an error. We\'ll figure it out soon. :)'));
+
+					}
+				}
+
+			}
+		}
+		$this->load->view('footer');
+	}
+
+
+
+	public function first(){
+		//show form here
+		$this->load->view('header');
+		$this->load->view('user/signup_form');
+		$this->load->view('footer');
+	}
+
+	private function UserExists($username){
+		$this->load->model("user_model");
+		$this->user_model->init($username);
+		return !$this->user_model->isUserObject;
+		/*if($this->user_model->init($username) >= 1) {
+			return true;		//exists
+		} else {
+			return false;		//does not exist 			
+		}*/
+	}
+
+	
+	public function loginBoxOrUserInfo(){
+		//shows login box if not logged on! or user info
+	}
+
+
+	
+}
+
+/* End of file user.php */
+/* Location: ./application/controllers/user.php */

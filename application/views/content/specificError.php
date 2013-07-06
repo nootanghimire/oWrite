@@ -1,0 +1,1 @@
+<div class="error" style="display:block; opacity:1;"><?php echo $ErrorMessage; ?></div>

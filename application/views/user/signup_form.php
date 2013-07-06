@@ -1,0 +1,8 @@
+<div id="form" class="">
+	<form id="signup_form" action="/user/signup" method="post">
+		<label for="user">Username</label><input type="text" name="user" id="user" placeholder="Enter Preferred Username" onblur="checkForSimilar(this)" /><br>
+		<label for="pass">Password</label><input type="password" name="pass" id="pass" placeholder="Enter New Pasword" onblur="validatepass(this" /><br>
+		<label for="email">E-mail</label><input type="email" name="email" id="email" placeholder="Enter Your Primary Email" /><br>
+		<input type="submit" value="Signup"></input>
+	</form>
+</div>
