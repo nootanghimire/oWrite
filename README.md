@@ -32,4 +32,4 @@ External Libraries, Codes, or Framework used
 License
 ========
 
-DBAD By Phil Sturgeon for materials not explicitly licensed (such as Code|gniter or PHPFineDiff or wmd editor)
+[DBAD](https://github.com/philsturgeon/dbad) By [Phil Sturgeon](https://github.com/philsturgeon) for materials not explicitly licensed (such as Code|gniter or PHPFineDiff or wmd editor)
