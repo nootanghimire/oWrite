@@ -20,7 +20,7 @@ Or, post an issue on issue tracker and we'll try to correct it!
 Creators (You can also be one)
 ===========
 
- - Concept and Initial Programming : [Nootan Ghimire](https://www.github.com/nootanghimire) 
+ - Concept and Initial Programming : [Nootan Ghimire](http://nootanghimire.github.io) 
  - Interface Design (CSS Coder) : [Nishan](https://github.com/Nishan13)
  
 **If you want to try the basic version:** [Click here](http://www.owrite.co.nf) (has limited bandwidth, please don't flood the site) :)
