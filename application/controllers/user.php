@@ -137,7 +137,12 @@ public function signup(){
 		$this->load->view('footer');
 		return 0;
 	} else {
-
+		if(trim($_POST['user'])=="" || trim($_POST['pass']) == "" || trim($_POST['email'])==""){
+			$this->load->view('header');
+			$this->load->view('content/specificError', array('ErrorMessage'=>'You moroon! Don\'t play with forms!'));
+			$this->load->view('footer');
+			return 0;
+		}
 		$username = strtolower($_POST['user']);
 		$password = $_POST['pass'];
 		$email = $_POST['email'];
