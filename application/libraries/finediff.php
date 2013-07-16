@@ -212,9 +212,12 @@ class FineDiff {
 	* a particular stack tailored to the specific content of a document can
 	* be passed.
 	*/
-	public function __construct($from_text = '', $to_text = '', $granularityStack = null) {
+	public function __construct(){
+		//moved to init because CI kinda sucks with `__construct()`ing the class
+	}
+	public function init($from_text = '', $to_text = '', $granularityStack = null) {
 		// setup stack for generic text documents by default
-		$this->granularityStack = $granularityStack ? $granularityStack : FineDiff::$characterGranularity;
+		$this->granularityStack = $granularityStack ? $granularityStack : FineDiff::$wordGranularity;
 		$this->edits = array();
 		$this->from_text = $from_text;
 		$this->doDiff($from_text, $to_text);

@@ -66,6 +66,7 @@ class Edits extends CI_Controller {
 		
 		//FineDiff::$wordGranularity,
 			include "/application/libraries/finediff.php";
+			$this->load->library('findiff');
 			$this->load->model('edits_model');
 			$this->load->model('books_model');
 			$e = $this->edits_model->getSpecificEdit($editId);
@@ -81,8 +82,8 @@ class Edits extends CI_Controller {
 
 			$from_text = $b->Content;
 			$to_text = $e->editContent;
-			$diff = new FineDiff($from_text, $to_text, FineDiff::$wordGranularity);
-			$data['difference'] = $diff->renderDiffToHTML() ;
+			$this->finediff->init($from_text, $to_text);
+			$data['difference'] = $this->finediff->renderDiffToHTML() ;
 			$data['editId']	= $editId; 		
 			$this->load->vieW('header');
 			$this->load->view('edits/showEdit', $data);
